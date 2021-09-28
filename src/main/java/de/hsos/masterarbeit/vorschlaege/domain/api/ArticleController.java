@@ -18,7 +18,7 @@ import java.util.*;
 import static java.lang.Math.round;
 
 @RestController
-@RequestMapping("/vorschlaege/articles")
+@RequestMapping("/articles")
 public class ArticleController {
 
     @Autowired
