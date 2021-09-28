@@ -35,14 +35,16 @@ public class KafkaListenerRunner implements Runnable {
     public Map<String, Object> config() {
 
         Map<String, Object> props = new HashMap<>();
-        props.put(BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        props.put(GROUP_ID_CONFIG, "vorschlaege");
+        props.put(BOOTSTRAP_SERVERS_CONFIG, "articleservice.servicebus.windows.net:9093");
+        props.put(GROUP_ID_CONFIG, "articleservice");
         props.put(ENABLE_AUTO_COMMIT_CONFIG, "true");
         props.put(AUTO_COMMIT_INTERVAL_MS_CONFIG, "1000");
         props.put(SESSION_TIMEOUT_MS_CONFIG, "30000");
         props.put(KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
         props.put(VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
-
+        props.put("sasl.mechanism", "PLAIN");
+        props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule   required username='$ConnectionString'   password='Endpoint=sb://articleservice.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=rQgOzPQExZtmeAHqx+62v5qZmZfuz5+UfEiwAc1DURI=';");
+        props.put("security.protocol", "SASL_SSL");
         return props;
     }
 

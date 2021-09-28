@@ -42,7 +42,7 @@ public class VorschlaegeApplication {
 	@Bean
 	public Producer<String,String> producer() {
 		Properties props = new Properties();
-		props.put(BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+		props.put(BOOTSTRAP_SERVERS_CONFIG, "articleservice.servicebus.windows.net:9093");
 		props.put(ACKS_CONFIG, "all");
 		props.put(RETRIES_CONFIG, 0);
 		props.put(BATCH_SIZE_CONFIG, 32000);
@@ -50,6 +50,9 @@ public class VorschlaegeApplication {
 		props.put(BUFFER_MEMORY_CONFIG, 33554432);
 		props.put(KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
 		props.put(VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+		props.put("sasl.mechanism", "PLAIN");
+		props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule   required username='$ConnectionString'   password='Endpoint=sb://articleservice.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=rQgOzPQExZtmeAHqx+62v5qZmZfuz5+UfEiwAc1DURI=';");
+		props.put("security.protocol", "SASL_SSL");
 
 		return new KafkaProducer<String,String>(props);
 	}
