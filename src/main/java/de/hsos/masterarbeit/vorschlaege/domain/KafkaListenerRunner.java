@@ -85,7 +85,6 @@ public class KafkaListenerRunner implements Runnable {
                     System.out.println("Key: "+ cr.key());
                     System.out.println("Action: " + action);
                     System.out.println("Object: " + object);
-                    System.out.println("TESTETST: " + object);
 
                     Article article = gson.fromJson(object, Article.class);
 
