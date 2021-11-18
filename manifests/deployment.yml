@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "vorschlaege-service"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "vorschlaege-service"
+  template:
+    metadata:
+      labels:
+        app: "vorschlaege-service"
+    spec:
+      containers:
+        - name: "masterarbeitcluster-45c4"
+          image: "masterimages.azurecr.io/vorschlaege-service.jar:latest"
+          ports:
+          - containerPort: 8082
