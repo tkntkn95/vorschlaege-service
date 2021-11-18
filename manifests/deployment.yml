@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: "masterarbeitcluster-45c4"
+  name: "vorschlaege-service"
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: "masterarbeitcluster-45c4"
+      app: "vorschlaege-service"
   template:
     metadata:
       labels:
-        app: "masterarbeitcluster-45c4"
+        app: "vorschlaege-service"
     spec:
       containers:
         - name: "masterarbeitcluster-45c4"
-          image: "masterimages.azurecr.io/masterarbeitcluster"
+          image: "masterimages.azurecr.io/vorschlaege-service.jar:latest"
           ports:
           - containerPort: 8082
